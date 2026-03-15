@@ -1,0 +1,49 @@
+B★ eCO₂ Compact Commercialization — Ch.1 Market Size Data (Global vs. Korea),,,,,,,,,
+Version: v2.0,Research Date: 2026-03-15,Unit: USD Million (unless noted),,,,,,,
+,,,,,,,,,
+[Section A] Market Size by Application — Korea (KR) Basis,,,,,,,,,
+Application Sector,Market Category,2024 Actual ($M),2026E ($M),2030F ($M),2035F ($M),CAGR (%),Source,Note
+Data Center Cooling & WHR,Korea DC Cooling Market,176.67,250,454,919,17.04%,Mordor Intelligence 2025; dc_cooling.json §5_korea_specific,Cooling market only
+Data Center Cooling & WHR,Korea Total DC Market,—,1990,4750,10200,20.38%,Mordor Intelligence; CAGR 2026-2031,Total DC market (data + servers)
+Data Center Cooling & WHR,Korea Hyperscale DC,965.72,1200,2050,2600,9.42%,MarketResearchFuture 2025; dc_cooling.json §5,2024-2035 forecast
+Nuclear / SMR / Cogeneration,Korea CHP Market,1900,2100,2450,3000,5.80%,KEPCO Korea CHP market; kepco_korea.json §5,Total CHP (power + heat)
+Nuclear / SMR / Cogeneration,i-SMR Program Value,—,—,—,4500+,—,KHNP commercialization roadmap; 2035 target
+Nuclear / SMR / Cogeneration,Korea Nuclear Capacity (GW),24.7,25.5,28.9,35.2,—,11th Basic Energy Plan 2025; nuclear_smr.json §section_2,GW unit (not market size)
+LNG Power Plant Waste Heat,Korea LNG Power Capacity,—,—,—,—,—,kepco_korea.json §section_2,Separate market measurement needed
+LNG Power Plant Waste Heat,Korea ORC Market,300,350,480,600,9.40%,LinkedIn Pulse; kepco_korea.json §section_6,ORC-based waste heat power
+LNG Power Plant Waste Heat,SK E&S LNG Transaction Volume,—,—,10000+,—,—,SK E&S: LNG 6 mtpa→10 mtpa (2030)
+Industrial Heat Pump (Steel/Petrochem),Korea Heat Pump Total Market,2890,3430,5200,8000,7.88~9.30%,MarkNtel Advisors; heat_pumps.json §5_korea_specific,Residential + commercial + industrial
+Industrial Heat Pump (Steel/Petrochem),Korea Industrial Heat Pump Segment,260,310,520,850,7.9%,KETEP (Korea Institute of Energy); estimate,Industrial process heat only
+Coal Plant Waste Heat Recovery,Korea CHP + Waste Heat Market,1900,2050,2400,2800,5.80%,kepco_korea.json §section_5,Including CHP basis
+Steel Mill BF Waste Heat,Korea Steel ORC / WHR Potential,—,100,250,500,—,POSCO internal energy data; estimate,Undeveloped potential scale
+,,,,,,,,,
+[Section B] Market Size by Application — Global Basis,,,,,,,,,
+Application Sector,Market Category,2024 Actual ($B),2026E ($B),2030F ($B),2035F ($B),CAGR (%),Source,Note
+Data Center Cooling & WHR,Total DC Cooling Market,16.32,20.5,40.72,75+,16.46%,GlobeNewswire 2025; dc_cooling.json §4,Global total
+Data Center Cooling & WHR,DC Liquid Cooling Market,5.65,6.0,15.75,27.1,18.2~24.0%,Research&Markets; GM Insights; dc_cooling.json §4,Liquid cooling only
+Data Center Cooling & WHR,CDU Market,1.5,1.8,4.5,7.1,21.40%,Grand View Research; dc_cooling.json §1,Coolant Distribution Units
+Nuclear / SMR / Cogeneration,Global SMR Market,2.0,3.5,15.0,45.0,18.0%,IEA; WNA; estimate,Early-stage acceleration
+Nuclear / SMR / Cogeneration,Global Nuclear Market,45.0,50.0,70.0,110.0,8.0%,WNA World Nuclear Outlook,Total nuclear
+LNG Power Plant Waste Heat,Global CCGT Market,25.0,27.0,35.0,42.0,5.5%,IEA; IRENA estimate
+Industrial Heat Pump (Steel/Petrochem),Global Industrial Heat Pump,9.5,11.0,20.0,40.0,5.9~15.0%,McKinsey; ResearchAndMarkets; heat_pumps.json §4,Varies significantly by definition
+Industrial Heat Pump (Steel/Petrochem),High-Temp Industrial HP (HTHP),0.83,1.0,1.8,3.5,5.90%,MarketReportAnalytics; heat_pumps.json §4,>100°C output only
+Coal Plant Waste Heat Recovery,Global CHP Market,25.0,27.0,33.0,40.0,4.5%,IEA; estimate
+Steel Mill BF Waste Heat,Global Steel WHR,1.2,1.5,2.8,5.0,9.4%,POSCO Group report; academic estimate,BF waste heat specific
+,,,,,,,,,
+[Section C] B★ eCO₂ Specific Market Opportunity Estimates,,,,,,,,,
+Item,Basis,2026E ($M),2028E ($M),2030E ($M),2033E ($M),2035E ($M),Assumptions,Source
+B★ Korea TAM (all applications),6-sector KR aggregate,—,1600,3200,6000,9800,No eCO₂ penetration rate applied; gross market sum,Composite calculation
+B★ Korea SAM (DC cooling priority 1),Korea DC cooling addressable market,—,120,280,550,920,10-15% of DC cooling market applicable to eCO₂,dc_cooling.json §5 based estimate
+B★ Hub-S1 Model Revenue Forecast,FS_B v3 financial model basis,—,20,85,200,527,IRR 42.4% / Payback 4 years / 10-year revenue $527M,FS_B_Standalone_WITH_FORMULAS_v3.xlsx
+eCO₂ System CAPEX Comparison,Hub-S1 unit $18M,18,18,16,14,12,Unit CAPEX learning curve effect applied,B★ Financial Model
+Korea Power Savings Potential (DC),Seoul DC 150 units × 1MW savings,—,300,700,1400,2500,PUE 1.5→1.1 savings at $0.06/kWh,Based on KEPCO electricity rates
+,,,,,,,,,
+[Section D] Key Policy / Regulatory Variables (Korea),,,,,,,,,
+Policy / Regulation,Content,Effective Date,Market Impact,Source
+Distributed Energy Special Act,DC >10MW power grid impact assessment; distributed energy zone self-generation trading permitted,2024-06,DC distributed power + eCO₂ generation direct opportunity,kepco_korea.json; dc_cooling.json §5
+SMR Act (Small Modular Reactor Support Special Act),Dedicated SMR licensing / support framework created,2026-02,i-SMR project acceleration; eCO₂ cogeneration integration opportunity,nuclear_smr.json §section_2_ismr
+i-SMR SDA Application,KHNP+KAERI innovative SMR design approval application submitted to NSSC,2026-03,Target 2028 approval → construction → commercial operation 2035,nuclear_smr.json §section_2
+Industrial Electricity Tariff Reform,Daytime peak −16.9 KRW/kWh / Nighttime +5.1 KRW/kWh,2026-04-16,eCO₂ DC cooling / heat pump economics improved,kepco_korea.json §section_5; heat_pumps.json §5
+Heat Pump Renewable Energy Recognition,Air-source heat officially recognized as renewable energy,2025-12,Heat pump REC weighting → improved profitability,heat_pumps.json §5_korea_specific
+Korea $735B Sovereign AI Initiative,50 new DCs / 500K GPUs / SK Hynix etc. investment commitment,2025,DC market rapid expansion → eCO₂ cooling demand surge,dc_cooling.json §5_korea_specific
+Czech Republic APR-1400 Export Contract,$19B contract (Jun 2025); EU state aid approved (Dec 2025),2025-06,KHNP overseas pipeline expansion → eCO₂ export opportunity,nuclear_smr.json §section_2_apr1400
