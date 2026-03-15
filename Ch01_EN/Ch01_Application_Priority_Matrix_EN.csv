@@ -1,0 +1,31 @@
+B★ eCO₂ Compact Commercialization — Application Priority Matrix (Ch.1),,,,,,,,,,,,,
+Version: v2.0,Research Date: 2026-03-15,Author: B★ Project Team,,,,,,,,,,,
+,,,,,,,,,,,,,
+Evaluation Criteria Definitions & Weights,,,,,,,,,,,,,
+Criterion1_Revenue Earliness (25%),Speed of revenue realization and clarity of contract pipeline (1-10),,,,,,,,,,,,
+Criterion2_Tech Fit (20%),eCO₂ technology suitability and TRL readiness for the application (1-10),,,,,,,,,,,,
+Criterion3_B★ Alignment (20%),Direct alignment with B★ eCO₂ compact modular architecture (1-10),,,,,,,,,,,,
+Criterion4_Policy Support (20%),Korean government policy / licensing / subsidy support intensity (1-10),,,,,,,,,,,,
+Criterion5_CAGR Normalized (15%),Normalized score based on market CAGR (1-10),,,,,,,,,,,,
+,,,,,,,,,,,,,
+Application Priority Scoring Matrix,,,,,,,,,,,,,
+Rank,Application Sector,Revenue Earliness (25%),Tech Fit (20%),B★ Alignment (20%),Policy Support (20%),CAGR Normalized (15%),Weighted Sum,KR Market ($M),CAGR (%),Composite Score,B★ Key Rationale,Primary References,Updated
+★1,Data Center Cooling & Waste Heat Recovery,9.5,9.8,9.8,9.2,9.3,9.53,19900,20.4%,9.35,"eCO₂ refrigerant loop enables simultaneous DC liquid cooling + ORC power generation; GPU rack density surging to 120-140 kW mandating liquid cooling; Korea DC market CAGR 20.4% (2026-2031); 150 new DC power applications totaling 9.36 GW (KEPCO, 2025); Samsung SDS / SK Telecom / OpenAI accelerating Korea DC investment","dc_cooling.json §4_market_size_and_growth; §5_korea_specific; Mordor Intelligence 2025",2026-03-15
+★2,Nuclear / SMR / Cogeneration Integration,8.2,8.5,8.8,9.0,8.7,8.60,4500,18.0%,8.42,"eCO₂ Brayton cycle optimally matched to SMR high-temperature heat source (300-400°C); Korea i-SMR 170 MWe SDA application (Mar 2026), SMR Act enacted (Feb 2026); KHNP Czech APR-1400 export $19B (Jun 2025); eCO₂ cogeneration enables simultaneous power + heat supply","nuclear_smr.json §section_2_korea_nuclear_program; §section_6_cogeneration_economics",2026-03-15
+3,LNG Power Plant Waste Heat Generation,7.5,7.2,7.0,7.8,6.2,7.19,3800,8.5%,7.18,"CCGT exhaust 500-600°C → eCO₂ bottoming cycle efficiency boost; SK E&S LNG expansion 6→10 mtpa (2030); KEPCO industrial electricity tariff reduction (Apr 2026) improving economics; 7 LNG terminals / 90 storage tanks in Korea","kepco_korea.json §section_2_korea_lng_sector; §section_5_industrial_cogeneration",2026-03-15
+4,Industrial Heat Pump (Steel / Petrochemical),6.8,7.0,6.5,7.5,5.8,6.90,8000,7.9%,6.73,"eCO₂ HTHP optimal for 100-150°C industrial heat supply; Korea government targets 3.5 million heat pumps by 2035; KIER/KIMM high-temperature heat pump R&D support; industrial electricity tariff reform (Apr 2026); decarbonization pressure on steel/petrochemical sector","heat_pumps.json §5_korea_specific; §6_economics; kepco_korea.json §section_8",2026-03-15
+5,Coal Power Plant Waste Heat Recovery,6.0,6.5,6.2,6.8,5.2,6.22,3000,6.5%,6.18,"Aged coal plant waste heat (150-400°C) eCO₂ recovery opportunity; 11th Basic Energy Plan coal reduction from 28.1%→~14% by 2038 creates conversion opportunity; CHP market CAGR 5.8% (2026-2033) $1.9B→$2.8B; K-ETS carbon cost savings","kepco_korea.json §section_5_industrial_cogeneration; §section_8_investment_opportunities",2026-03-15
+6,Steel Mill Blast Furnace Waste Heat,5.5,6.0,5.8,6.2,4.8,5.69,2200,6.0%,5.29,"Unrecovered BF slag at 1400-1500°C; potential 1.3-1.8 GJ/t; POSCO / Hyundai Steel operating BFG/COG CCGT (290-400 MW); eCO₂ ORC for residual low-grade heat recovery; HyREX hydrogen-based steelmaking transition demand","kepco_korea.json §section_4_posco_steel_sector; §section_6_waste_heat_monetization",2026-03-15
+,,,,,,,,,,,,,
+Weighted Sum Formula Reference,,,,,,,,,,,,,
+Weighted Sum = (Revenue Earliness×0.25)+(Tech Fit×0.20)+(B★ Alignment×0.20)+(Policy Support×0.20)+(CAGR Normalized×0.15),,,,,,,,,,,,,
+Composite Score = Final research team score (adjusted based on weighted sum),,,,,,,,,,,,,
+CAGR Normalization Basis: CAGR 20%=10pts / 15%=8pts / 10%=6pts / 7%=5pts / 5%=4pts (linear interpolation),,,,,,,,,,,,,
+,,,,,,,,,,,,,
+B★ Strategic Positioning Notes,,,,,,,,,,,,,
+Rank 1 (DC Cooling),★★★ Immediate Execution,"Pilot contract target 2026H2, Hub-S1 module ($18M CAPEX) deployment",,,,,,,,,,,,
+Rank 2 (SMR Integration),★★★ Mid-term Core,"Joint development MOU around i-SMR SDA approval (2028)",,,,,,,,,,,,
+Rank 3 (LNG Waste Heat),★★ Mid-term Pipeline,"eCO₂ bottoming cycle option for new LNG CCGT projects",,,,,,,,,,,,
+Rank 4 (Heat Pump),★★ Policy-linked,"Entry into government R&D projects, KETEP-linked demonstration",,,,,,,,,,,,
+Rank 5 (Coal Waste Heat),★ Transition Watch,"eCO₂ conversion packages for aging coal plants (2028-2035)",,,,,,,,,,,,
+Rank 6 (Steel Waste Heat),★ Long-term R&D,"POSCO / Hyundai Steel carbon neutrality roadmap (2030+ target)",,,,,,,,,,,,
