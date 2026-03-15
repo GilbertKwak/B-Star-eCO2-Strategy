@@ -1,0 +1,7 @@
+Machine Type,Drive Method,Pressure Ratio,Isentropic Efficiency (%),Speed (RPM),Capacity Range,Operating Pressure (bar),Operating Temp (°C),B★ Suitability,Key Suppliers
+"Centrifugal Compressor (Radial)","Electric Motor / Turbine Direct","3.0–4.5:1","78–87","15,000–75,000","1–10 MW","28–120","-10–60","Primary Priority","Hanwha Power Systems · SwRI · GE"
+"Scroll Compressor","Electric Motor (VFD)","2.0–3.0:1","70–82","2,400–6,000","5–200 kW","50–120","-20–110","Optimal for Small DC","LG Electronics · Samsung · Copeland"
+"Radial Expander","Direct Generator","2.5–4.0:1","80–87","30,000–120,000","50 kW–5 MW","70–120","0–90","Primary Target","KIER · SwRI · Iljin"
+"Scroll Expander","Direct Generator","2.0–3.5:1","60–72","2,000–5,000","5–100 kW","75–120","10–110","Backup Option","KAIST · Toshiba · Sanyo"
+"Piston Expander","Direct Generator","3.0–6.0:1","65–78","500–3,000","1–50 kW","80–130","0–120","Special Use","DSME · Virtalizer"
+"Integrally Geared Compander","Turbine + Compressor Integrated","Combined","88–92","3,600–16,500","5–50 MW","74–280","0–700","Large Plant","Hanwha Power Systems (APOLLO Program)"
