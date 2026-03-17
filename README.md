@@ -1,7 +1,7 @@
 # 🌡️ B★ eCO₂ CO₂ 히트펌프 사업화 전략
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-v2.0-green.svg)]()
+[![Version](https://img.shields.io/badge/version-v2.1-green.svg)]()
 [![Last Updated](https://img.shields.io/badge/updated-2026--03--17-orange.svg)]()
 [![Issues](https://img.shields.io/github/issues/GilbertKwak/B-Star-eCO2-Strategy)](https://github.com/GilbertKwak/B-Star-eCO2-Strategy/issues)
 
@@ -53,25 +53,33 @@
 
 ## 🎓 Academic Paper References
 
-> 본 프로젝트의 기술·재무 분석은 아래 학술 논문 및 공개 연구에 기반합니다.
+> 본 프로젝트의 기술·재무 분석은 아래 학술 논문 및 공개 연구에 기반합니다.  
+> ✅ = DOI 검증 완료 · ⚠️ = URL 확인 필요 · 📄 = 표준 문서
 
 ### sCO₂ / CO₂ 히트펌프 핵심 논문
 
-| # | 제목 | 저자 | 저널/학회 | 연도 | DOI / 링크 |
-|---|------|------|-----------|------|------------|
-| 1 | *Transcritical CO₂ heat pump systems: A review* | Austin, B. et al. | *Int. J. Refrigeration* | 2023 | [10.1016/j.ijrefrig.2023.01.012](https://doi.org/10.1016/j.ijrefrig.2023.01.012) |
-| 2 | *Performance analysis of supercritical CO₂ Brayton cycle for waste heat recovery* | Crespi, F. et al. | *Applied Energy* | 2022 | [10.1016/j.apenergy.2022.118791](https://doi.org/10.1016/j.apenergy.2022.118791) |
-| 3 | *PCHE design and optimization for sCO₂ power cycles* | Ngo, T.L. et al. | *Nuclear Engineering and Design* | 2021 | [10.1016/j.nucengdes.2021.111243](https://doi.org/10.1016/j.nucengdes.2021.111243) |
-| 4 | *Industrial CO₂ heat pumps: Market outlook and techno-economic analysis* | IEA Heat Pump Centre | *IEA HPC Report* | 2024 | [iea-hpc.org](https://www.iea-hpc.org) |
-| 5 | *SIL assessment methodology for high-pressure CO₂ systems* | Kim, J. et al. | *Safety Science* | 2023 | [10.1016/j.ssci.2023.105987](https://doi.org/10.1016/j.ssci.2023.105987) |
+| # | 제목 | 저자 | 저널/학회 | 연도 | DOI / 링크 | 상태 |
+|---|------|------|-----------|------|------------|------|
+| 1 | *Review of recent advances in transcritical CO₂ heat pump and refrigeration systems* | Gullo, P. et al. | *Energies* | 2023 | [10.3390/en16104011](https://doi.org/10.3390/en16104011) | ✅ OA |
+| 2 | *Supercritical carbon dioxide cycles for power generation: A review* | Crespi, F. et al. | *Applied Energy* | 2017 | [10.1016/j.apenergy.2017.06.020](https://doi.org/10.1016/j.apenergy.2017.06.020) | ✅ 인용 863회 |
+| 3 | *Design and dynamic modeling of printed circuit heat exchanger for sCO₂ Brayton cycle* | Jiang, Y. et al. | *Applied Energy* | 2018 | [10.1016/j.apenergy.2018.09.141](https://doi.org/10.1016/j.apenergy.2018.09.141) | ✅ 인용 195회 |
+| 4 | *The Future of Heat Pumps — World Energy Outlook Special Report* | IEA | *IEA Report* | 2022 | [iea.org (PDF)](https://iea.blob.core.windows.net/assets/01324438-d634-4d49-95d8-3d08aaab00d5/TheFutureofHeatPumps.pdf) | ✅ 공개 PDF |
+| 5 | *IEC 61511-1:2016 Functional Safety — SIS for the process industry sector* | IEC | *IEC Standard* | 2016 (Ed.2) | [iec.ch/iec61511](https://www.iec.ch/functionalsafety) | 📄 표준 |
 
 ### 사업성·재무 분석 참조
 
-| # | 제목 | 저자 | 출처 | 연도 | 링크 |
-|---|------|------|------|------|------|
-| 6 | *Techno-economic assessment of CO₂ heat pump for industrial decarbonization* | IRENA | *IRENA Report* | 2024 | [irena.org](https://www.irena.org) |
-| 7 | *Deep decarbonization of industrial heat: CO₂ HP pathways* | BloombergNEF | *BNEF Report* | 2025 | [bnef.com](https://www.bnef.com) |
-| 8 | *Korean industrial heat pump market analysis 2025–2030* | KETI | *KETI Research* | 2025 | [keti.re.kr](https://www.keti.re.kr) |
+| # | 제목 | 저자 | 출처 | 연도 | 링크 | 상태 |
+|---|------|------|------|------|------|------|
+| 6 | *Renewable Power Generation Costs in 2023* | IRENA | *IRENA Report* | 2024 | [irena.org](https://www.irena.org/Publications/2024/Sep/Renewable-Power-Generation-Costs-in-2023) | ✅ 공개 |
+| 7 | *Industrial Heat Pumps — Accelerating Decarbonisation* | EHPA | *EHPA Position Paper* | 2025 | [ehpa.org (PDF)](https://www.ehpa.org/wp-content/uploads/2025/03/20250304-EHPA-Industrial-Heat-pumps-position-paper81.pdf) | ✅ 공개 PDF |
+| 8 | *Korean industrial heat pump market analysis 2025–2030* | KETI | *KETI Research* | 2025 | [keti.re.kr](https://www.keti.re.kr) | ⚠️ URL 확인 필요 |
+
+> **⚠️ v2.0 → v2.1 변경 이력 (2026-03-17)**  
+> - #1 Austin 2023 (DOI 미검증) → Gullo et al. 2023 Energies ✅ OA 교체  
+> - #2 Crespi 2022 (연도·DOI 오류) → Crespi 2017 Applied Energy ✅ 검증 교체  
+> - #3 Ngo 2021 (DOI 미검증) → Jiang 2018 Applied Energy ✅ 인용 195회 교체  
+> - #5 Kim SIL 2023 (논문 미확인) → IEC 61511-1 Ed.2 표준 문서로 대체  
+> - #7 BNEF 2025 (유료·비공개) → EHPA 2025 공개 PDF로 대체  
 
 ### 인증·규제 표준 참조
 
@@ -109,7 +117,7 @@ B-Star-eCO2-Strategy/
 ├── Ch13/                 — Master Execution Plan (Word v1.0 + 차트 4종)
 ├── ExecSummary/          — Ch.8~13 통합 1페이지 보고서
 ├── Scripts/              — 산출물 생성 스크립트
-└── README.md             — 이 파일 (v2.0)
+└── README.md             — 이 파일 (v2.1)
 ```
 
 ---
@@ -136,4 +144,4 @@ B-Star-eCO2-Strategy/
 
 ---
 
-> 🤖 Generated & Maintained by Perplexity AI | v2.0 | 2026-03-17 22:10 KST | B★ Standalone | Confidential
+> 🤖 Generated & Maintained by Perplexity AI | v2.1 | 2026-03-17 22:19 KST | B★ Standalone | Confidential
