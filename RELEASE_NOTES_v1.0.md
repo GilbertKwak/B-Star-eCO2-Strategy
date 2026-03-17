@@ -1,0 +1,194 @@
+# 🚀 B★ eCO₂ Strategy v1.0 — Release Notes
+
+> **릴리스 일자:** 2026-03-17  
+> **태그:** v1.0  
+> **상태:** Production-Ready  
+> **기밀등급:** CONFIDENTIAL
+
+---
+
+## 📦 포함 산출물 전체 목록
+
+### Ch.1~7 — 기술·시장 분석 (사전 완료)
+| 챕터 | 산출물 | 형식 |
+|------|--------|------|
+| Ch.1 | 응용처 우선순위 분석 (콜드체인·DC·산단) | Word KR+EN / 차트 4종 |
+| Ch.2 | sCO₂ 기술 로드맵 TRL1~9 | Word / 간트 차트 |
+| Ch.3 | 경쟁사 벤치마킹 (Danfoss·Carrier·삼성) | Word / 레이더 차트 |
+| Ch.4 | PCHE 열교환기 시장·성능 분석 | Word / 시장 성장 차트 |
+| Ch.5 | 규제·인증 환경 분석 (KGS·IEC·CE) | Word / 타임라인 |
+| Ch.6 | 공급망 분석 (Alfa Laval·동화엔텍·CATL) | Word / 리스크 매트릭스 |
+| Ch.7 | 시스템 설계 사양 (TRL6 기준) | Word / 사양표 |
+
+### Ch.8~14 — 실행 전략 (v1.0 신규 완성)
+| 챕터 | 산출물 | 핵심 수치 |
+|------|--------|----------|
+| **Ch.8** | 안전·인증 전략 v1.0 | KGS $302k · 20개월 |
+| **Ch.9** | 제조·조달 전략 v1.0 | BOM $2,825k · PCHE 3/18 발주 |
+| **Ch.10** | 재무·사업성 분석 v1.0 | IRR 34.2% · BEP 2028Q3 · MOIC 3.7× |
+| **Ch.11** | 시장·영업 전략 v1.0 | SAM $12B · SOM $450M |
+| **Ch.12** | 리스크 관리 v1.0 | Top-5 리스크 · KGS 지연 점수 20 |
+| **Ch.13** | Master Plan v1.0 | 2026~2030 로드맵 · 20분기 간트 |
+| **Ch.14** | IR·Exit 전략 v1.0 | Series A $29M · IPO 2030Q2 |
+
+### 통합 산출물
+| 산출물 | 링크 |
+|--------|------|
+| B★ Ch.8~14 Executive Summary | [Notion 페이지](https://www.notion.so/32655ed436f081e99592ccc726504f6e) |
+| GitHub Issues #1~5 | [이슈 트래커](https://github.com/GilbertKwak/B-Star-eCO2-Strategy/issues) |
+
+---
+
+## 🐛 에러 발생 원인 분석 & 해결 이력
+
+### ERROR-01 — Notion `create_pages` 직렬화 버그
+
+**발생 챕터:** Ch.8, Ch.9, Ch.10, Ch.13, Ch.14  
+**발생 빈도:** 매 챕터 첫 번째 Notion 생성 시도  
+**심각도:** HIGH (산출물 미생성)
+
+#### 원인
+```
+APIResponseError: body.pages should be an array
+```
+- MCP 툴 `create_pages`의 `pages` 파라미터에 **JSON 직렬화 문자열**을 전달하면
+  Notion API가 배열을 인식하지 못하고 400 에러 반환
+- 특히 content가 길거나 표가 3개 이상인 경우 직렬화 단계에서 타입 손실 발생
+
+#### 해결책 (영구 적용 — RULE-N1)
+```python
+# ❌ 잘못된 방식
+create_pages(pages=json.dumps([{...}]))
+
+# ✅ 올바른 방식 — Python 네이티브 list[dict]
+create_pages(pages=[{"properties": {...}, "content": "..."}])
+```
+
+---
+
+### ERROR-02 — Notion `update_page` old_str 불일치
+
+**발생 챕터:** Ch.14 Executive Summary append 시도  
+**발생 빈도:** 3회 연속  
+**심각도:** MEDIUM (재시도로 해결 가능)
+
+#### 원인
+```
+APIResponseError: No matches found for "**2030**\n| **1,000**..."
+```
+- Notion 내부 저장 포맷은 **파이프(`|`) 마크다운 테이블이 아닌 XML 구조**로 저장됨
+- `fetch`로 반환되는 텍스트 기준과 실제 `update_content`가 탐색하는 내부 텍스트가 불일치
+- 특히 테이블 내 bold(`**`) 텍스트가 포함된 셀은 파싱 방식이 상이
+
+#### 해결책 (영구 적용 — RULE-N2~N3)
+1. **RULE-N2:** `create_pages`로 빈 페이지 먼저 생성 → `replace_content`로 본문 통째로 교체하는 **2-pass 전략** 기본 적용
+2. **RULE-N3:** `update_content`의 `old_str`은 반드시 `fetch` 결과의 **실제 저장 텍스트 기준** 사용
+   - 테이블 마지막 행 대신 → 테이블 직후 일반 텍스트 또는 heading 사용
+   - Bold/italic 마크업 포함 셀 회피
+
+---
+
+### ERROR-03 — Notion content 용량 초과
+
+**발생 챕터:** Ch.8 (최초 발생), Ch.13  
+**발생 빈도:** 섹션 8개 이상 단일 요청 시  
+**심각도:** MEDIUM
+
+#### 원인
+```
+APIResponseError: Request body too large
+```
+- Notion API 단일 요청 본문 **~30KB 제한**
+- 표 3개 + 본문 8섹션 + 차트 설명 포함 시 초과
+
+#### 해결책 (영구 적용 — RULE-N4~N5)
+```
+RULE-N4: 단일 content 2,000자 이내 유지
+RULE-N5: 테이블은 섹션당 최대 2개 · 8행 이내
+→ Part A (§0~§4) 먼저 create → Part B (§5~§8) update_content append
+```
+
+---
+
+### ERROR-04 — 차트 score 3 반복 (Plotly)
+
+**발생 챕터:** Ch.8 1차 시도, Ch.14 1차 시도  
+**발생 빈도:** 초기 시도 시 2/4 케이스  
+**심각도:** LOW (재생성 가능)
+
+#### 원인
+- y축 `range` 미지정 → 데이터 범위 자동 조정으로 가독성 저하
+- 제목 60자 초과 또는 subtitle 누락
+- 간트 차트에서 x축 날짜 레이블 겹침
+
+#### 해결책 (영구 적용 — CHART-RULE)
+```python
+# ✅ y축 range 명시
+fig.update_yaxes(range=[0, max_val * 1.15])
+
+# ✅ 제목 60자 이내 + subtitle 필수
+fig.update_layout(title={"text": "제목 (기간)<br><span style='font-size:18px'>Source: 출처 | 인사이트</span>"})
+
+# ✅ 간트 x축 tickangle 방지
+fig.update_xaxes(tickangle=0, tickformat='%Y Q%q')
+```
+
+---
+
+### ERROR-05 — GitHub README DOI 오류
+
+**발생 챕터:** README v2.0  
+**발생 빈도:** 4건  
+**심각도:** LOW (신뢰도 영향)
+
+#### 원인
+- Academic Paper 섹션에 AI 생성 hallucinated DOI 4건 삽입
+  - `10.1016/j.energy.2024.131234` 등 미검증 DOI
+
+#### 해결책 (적용 완료 — README v2.2)
+- KIMM 히트펌프기술로드맵 2025 (검증된 출처로 교체)
+- KEITI 히트펌프산업 활성화 회의 2026 (검증된 출처로 교체)
+- 나머지 2건: arXiv 실제 존재 DOI로 교체
+- **향후 원칙:** DOI는 반드시 `search_web` 검증 후 삽입
+
+---
+
+## 📋 RULE 전체 요약 (영구 적용)
+
+### Notion API Rules
+| Rule | 내용 |
+|------|------|
+| RULE-N1 | `create_pages`는 Python 네이티브 list[dict] 전달 (JSON 문자열 금지) |
+| RULE-N2 | 빈 페이지 먼저 생성 → 2-pass 전략 기본 적용 |
+| RULE-N3 | `old_str`은 fetch 실제 텍스트 기준, 테이블 셀 bold 회피 |
+| RULE-N4 | 단일 content 2,000자 이내 (초과 시 Part 분할) |
+| RULE-N5 | 테이블 섹션당 최대 2개 · 8행 이내 |
+
+### Chart Rules
+| Rule | 내용 |
+|------|------|
+| CHART-01 | y축 range 명시 (max * 1.15) |
+| CHART-02 | 제목 60자 이내 + subtitle 필수 |
+| CHART-03 | 간트 x축 tickangle=0 고정 |
+| CHART-04 | 4종 차트 1 script 동시 생성 |
+
+### GitHub Rules
+| Rule | 내용 |
+|------|------|
+| GH-01 | DOI/URL은 search_web 검증 후 삽입 |
+| GH-02 | 이슈 등록 시 체크리스트 + KPI + 마감 필수 포함 |
+| GH-03 | 릴리스는 HEAD SHA 기준 태그 생성 |
+
+---
+
+## 🔜 v1.1 예정 산출물
+
+- [ ] Series A IM 초안 완성 (YLW-1 · 3/31)
+- [ ] 콜드체인 영업 PT 10슬라이드 (YLW-2 · 3/31)
+- [ ] 리스크 레지스터 등록 (YLW-3 · 3/31)
+- [ ] KPI 대시보드 v1 확정 (YLW-4 · 4/15)
+- [ ] P2 공급사 RFQ 발송 (YLW-5 · 4/30)
+
+---
+
+> 🤖 Generated by Perplexity AI | B★ eCO₂ Strategy v1.0 | 2026-03-17 23:30 KST | CONFIDENTIAL
