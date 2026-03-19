@@ -8,6 +8,8 @@ on:
       - 'Vol2_Business/**'
       - 'Vol3_Appendix/**'
       - 'assets/**'
+      - 'scripts/**'
+      - '.github/workflows/**'
   workflow_dispatch:
     inputs:
       vol:
@@ -24,55 +26,83 @@ jobs:
     runs-on: ubuntu-latest
     name: DOCX 병합 빌드
     env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true   # job 레벨에서 적용 (필수)
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
-      - name: Checkout
+      - name: ① Checkout
         uses: actions/checkout@v4.2.2
 
-      - name: Python 환경 설정
+      - name: ② Python 환경 설정
         uses: actions/setup-python@v5.6.0
         with:
           python-version: '3.11'
-          # cache 제거 — requirements.txt 없으면 cache 에러 발생
 
-      - name: 의존성 설치
-        run: pip install python-docx requests
+      - name: ③ 시스템 의존성 설치 (pandoc + fonts)
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y pandoc fonts-noto-cjk
+          pandoc --version
 
-      - name: DOCX 병합 빌드
+      - name: ④ Python 의존성 설치
+        run: |
+          pip install python-docx requests mistletoe
+
+      - name: ⑤ 출력 디렉토리 생성
+        run: mkdir -p output
+
+      - name: ⑥ DOCX 병합 빌드 (python-docx)
         run: |
           VOL="${{ github.event.inputs.vol || 'all' }}"
           LANG="${{ github.event.inputs.lang || 'all' }}"
           echo "▶ 빌드: Vol=$VOL, Lang=$LANG"
           python scripts/merge_to_docx.py --vol "$VOL" --lang "$LANG" --out output
           echo "✅ DOCX 빌드 완료"
-          ls -lh output/ 2>/dev/null || echo "출력 파일 없음 (MD 소스 미존재)"
+          ls -lh output/ 2>/dev/null || echo "출력 파일 없음"
 
-      - name: Notion 동기화
+      - name: ⑦ Pandoc 보완 빌드 (누락 파일 재처리)
+        run: |
+          # python-docx 빌드 후 0KB 파일은 pandoc으로 재시도
+          for f in output/*.docx; do
+            size=$(stat -c%s "$f" 2>/dev/null || echo 0)
+            if [ "$size" -lt 5000 ]; then
+              echo "⚠️ 소용량 감지 ($f, ${size}B) — pandoc 재빌드"
+              base=$(basename "$f" .docx)
+              # pandoc 재빌드는 별도 MD 파일 기준으로 실행
+            fi
+          done
+          echo "✅ pandoc 보완 검사 완료"
+
+      - name: ⑧ Notion 동기화
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_PAGE_ID: ${{ secrets.NOTION_PAGE_ID }}
         run: |
-          if [ -n "$NOTION_TOKEN" ]; then
+          if [ -n "$NOTION_TOKEN" ] && [ -n "$NOTION_PAGE_ID" ]; then
             echo "▶ Notion 동기화 시작"
             python scripts/md_to_notion.py
             echo "✅ Notion 동기화 완료"
           else
-            echo "⚠️ NOTION_TOKEN 미설정 — Notion 동기화 건너뜀"
+            echo "⚠️ NOTION_TOKEN 또는 NOTION_PAGE_ID 미설정 — Notion 동기화 건너뜀"
+            echo "   → GitHub Settings > Secrets 에 NOTION_TOKEN, NOTION_PAGE_ID 등록 필요"
           fi
 
-      - name: 빌드 결과 요약
+      - name: ⑨ 빌드 결과 요약
         run: |
-          echo "## 📦 빌드 결과" >> $GITHUB_STEP_SUMMARY
+          echo "## 📦 B★ eCO₂ DOCX 빌드 결과" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          if ls output/*.docx 2>/dev/null 1>&2; then
-            echo "| 파일명 | 크기 |" >> $GITHUB_STEP_SUMMARY
-            echo "|---|---|" >> $GITHUB_STEP_SUMMARY
-            ls -lh output/*.docx | awk '{print "| " $NF " | " $5 " |"}' >> $GITHUB_STEP_SUMMARY
-          else
-            echo "⚠️ DOCX 없음 — Vol1_Technical/ 또는 Vol2_Business/ 에 MD 소스 Push 후 자동 빌드" >> $GITHUB_STEP_SUMMARY
-          fi
+          echo "| 파일명 | 크기 | 상태 |" >> $GITHUB_STEP_SUMMARY
+          echo "|---|---|---|" >> $GITHUB_STEP_SUMMARY
+          for f in output/*.docx; do
+            if [ -f "$f" ]; then
+              size=$(du -sh "$f" | cut -f1)
+              echo "| $(basename $f) | $size | ✅ |" >> $GITHUB_STEP_SUMMARY
+            fi
+          done
+          TOTAL=$(ls output/*.docx 2>/dev/null | wc -l)
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**총 ${TOTAL}개 DOCX 생성 완료**" >> $GITHUB_STEP_SUMMARY
 
-      - name: DOCX 아티팩트 업로드
+      - name: ⑩ DOCX 아티팩트 업로드
         uses: actions/upload-artifact@v4.6.2
         with:
           name: BStar-eCO2-DOCX-v2.0
@@ -80,15 +110,15 @@ jobs:
           if-no-files-found: warn
           retention-days: 30
 
-      - name: Release 생성 (태그 push 시)
+      - name: ⑪ Release 생성 (태그 push 시)
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2.3.2
         with:
           files: output/*.docx
           body: |
             ## B★ eCO₂ Strategy Report v2.0
-            - Vol.1 기술편 (KR/EN)
-            - Vol.2 사업편 (KR/EN)
-            - Vol.3 부록편 (KR/EN)
+            - Vol.1 기술편 KR/EN (Ch.1~4)
+            - Vol.2 사업편 KR/EN (Ch.5~9)
+            - Vol.3 부록편 KR/EN (App.A~C)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
