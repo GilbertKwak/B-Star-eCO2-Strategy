@@ -1,0 +1,73 @@
+name: B★ eCO₂ Auto Build & Notion Sync
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'Vol1_Technical/**'
+      - 'Vol2_Business/**'
+      - 'Vol3_Appendix/**'
+      - 'assets/**'
+  workflow_dispatch:
+    inputs:
+      vol:
+        description: '빌드할 볼륨 (1, 2, 3, all)'
+        required: false
+        default: 'all'
+      lang:
+        description: '언어 (KR, EN, all)'
+        required: false
+        default: 'all'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: DOCX 병합 빌드
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Python 환경 설정
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 의존성 설치
+        run: pip install python-docx requests
+
+      - name: DOCX 병합 빌드
+        run: |
+          VOL=${{ github.event.inputs.vol || 'all' }}
+          LANG=${{ github.event.inputs.lang || 'all' }}
+          python scripts/merge_to_docx.py --vol $VOL --lang $LANG --out output
+
+      - name: Notion 동기화
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+        run: |
+          if [ -n "$NOTION_TOKEN" ]; then
+            python scripts/md_to_notion.py
+          else
+            echo "NOTION_TOKEN 미설정 — Notion 동기화 건너뜀"
+          fi
+
+      - name: DOCX 아티팩트 업로드
+        uses: actions/upload-artifact@v4
+        with:
+          name: BStar-eCO2-DOCX-v2.0
+          path: output/*.docx
+          retention-days: 30
+
+      - name: Release 생성 (태그 push 시)
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: output/*.docx
+          body: |
+            ## B★ eCO₂ Strategy Report v2.0
+            - Vol.1 기술편 (KR/EN)
+            - Vol.2 사업편 (KR/EN)
+            - Vol.3 부록편 (KR/EN)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
