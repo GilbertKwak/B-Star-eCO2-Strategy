@@ -1,167 +1,106 @@
-# Appendix C: 용어집 · 약어표 · 참고문헌
+# 부록 C — 용어집 · 참고문헌 v1.0 (B★ Standalone)
 
-> **문서 정보** | 버전: v2.0 | 기준일: 2026-03-19 | 분류: 내부용 (Confidential)
+> **정책**: B★ Standalone 기준 | **버전**: v1.0 | **확정일**: 2026-04-22 | **작성자**: Gilbert
 
 ---
 
 ## C-1. 핵심 용어집 (Glossary)
 
-| 용어 (KR) | 영문 | 정의 |
+| 용어 | 약어 | 정의 |
 |---|---|---|
-| 초임계 CO₂ | Supercritical CO₂ (sCO₂) | CO₂가 임계점(31.1°C, 73.8 bar) 이상의 온도·압력 조건에서 기체와 액체의 중간 성질을 갖는 상태 |
-| 전기화 CO₂ (eCO₂) | Electrified CO₂ (eCO₂) | B★가 정의한 개념으로, CO₂를 냉매·작동유체로 활용하면서 VFD·AI 제어로 전기 에너지를 능동적으로 최적화하는 시스템 |
-| 역카르노 사이클 | Reverse Rankine Cycle | 열에너지를 전기로 변환하는 열역학 사이클. B★ eCO₂는 CO₂를 작동유체로 사용 |
-| PCHE | Printed Circuit Heat Exchanger | 화학적 식각으로 미세 채널을 형성한 고효율 열교환기. 고압(>200 bar) 및 고온(>600°C) 적용 가능 |
-| 핀치포인트 | Pinch Point Temperature Difference (ΔT_pp) | 열교환기 내 온도 차이가 최소가 되는 지점. B★ 설계 기준 ΔT_pp ≤ 5°C |
-| COP | Coefficient of Performance | 성능계수. 출력 전력(kW) ÷ 투입 열에너지(kW). B★ P1 설계점 COP 7.4 |
-| TRL | Technology Readiness Level | 기술 성숙도 수준. NASA 기준 1~9단계. TRL 8 = 실물 검증 완료 |
-| VFD | Variable Frequency Drive | 가변 주파수 드라이브(인버터). 압축기 회전수를 가변 제어하여 부분부하 효율 향상 |
-| ESD | Emergency Shutdown | 비상 정지 시스템. SIL-2 기준 응답시간 ≤100 ms |
-| SIL | Safety Integrity Level | IEC 61511 기반 안전 무결성 등급. B★ 적용: SIL-2 |
-| FMEA | Failure Mode and Effects Analysis | 고장 모드 및 영향 분석. 위험도 = 발생빈도 × 심각도 × 검출가능성 |
-| DR | Demand Response | 전력 수요 반응. KEPCO AMI와 연동하여 피크 시간대 출력 조절 |
-| K-ETS | Korea Emissions Trading Scheme | 한국 온실가스 배출권 거래제. B★ CO₂ 절감량 크레딧 인정 |
-| WACC | Weighted Average Cost of Capital | 가중평균자본비용. B★ 재무모델 할인율 10% 적용 |
-| NPV | Net Present Value | 순현재가치. B★ Base 시나리오 10년 NPV ₩8.7B |
-| IRR | Internal Rate of Return | 내부수익률. B★ Base 31.4% vs WACC 10% |
-| PBP | Payback Period | 투자 회수 기간. B★ Base 4.3년 |
-| CAPEX | Capital Expenditure | 자본 지출. B★ P1 단위 ₩228M (₩2,756/W) |
-| O&M | Operation & Maintenance | 운영·유지보수 비용 및 수익. B★ ₩8M/건/년 |
-| PCT | Patent Cooperation Treaty | 특허협력조약. B★ C-07·C-08·C-09 3건 국제출원 |
-| TAM | Total Addressable Market | 총 유효 시장 규모 |
-| CAGR | Compound Annual Growth Rate | 연평균 성장률 |
-| MPC | Model Predictive Control | 모델 예측 제어. B★ Adaptive AI 제어 대비 안정화 시간 +43% 소요 |
-| PdM | Predictive Maintenance | 예지정비. B★ LSTM 모델 RUL 예측 정밀도 ±5% |
-| RUL | Remaining Useful Life | 잔여 유효 수명. LSTM 기반 30일 조기경보 |
-| CDU | Coolant Distribution Unit | 냉각수 분배 장치. DC 서버랙 직접 액냉 시스템 |
-| WHR | Waste Heat Recovery | 폐열 회수. B★ 핵심 응용 분야 |
-| SMR | Small Modular Reactor | 소형 모듈형 원자로. B★ P2(165kW) 적용 검토 |
-| GTM | Go-To-Market | 시장 진입 전략 |
-| LOI | Letter of Intent | 의향서. P-01 고객사 체결 완료 |
-| MOU | Memorandum of Understanding | 업무협약. P-02 고객사 체결 완료 |
-| EPC | Engineering, Procurement & Construction | 설계·조달·시공 일괄 계약 |
-| SCADA | Supervisory Control and Data Acquisition | 감시 제어 및 데이터 수집 시스템 |
-| OT | Operational Technology | 운영 기술 (현장 제어 시스템) |
-| IT | Information Technology | 정보 기술 |
-| DMZ | Demilitarized Zone | IT/OT 경계 보안 구간. IEC 62443 Zone 2~3 |
+| 초임계 이산화탄소 | sCO₂ | 임계점(31.1°C, 7.38MPa) 이상의 상태에서 작동하는 CO₂ 냉매. 기체와 액체의 특성을 동시에 가짐 |
+| 성능계수 | COP | Coefficient of Performance. 냉각 출력(kW) ÷ 소비전력(kW). B★ 설계 목표 7.4 |
+| 인쇄회로 열교환기 | PCHE | Printed Circuit Heat Exchanger. 화학 에칭으로 제작된 초고효율 판형 열교환기 |
+| 기술성숙도 | TRL | Technology Readiness Level. 1(기초 원리)~9(실제 환경 운용 검증) 단계 |
+| 전력사용효율 | PUE | Power Usage Effectiveness. 데이터센터 총 전력 ÷ IT 장비 전력. 1.0에 가까울수록 효율적 |
+| 측정·보고·검증 | MRV | Measurement, Reporting & Verification. 온실가스 감축 실적의 정량적 검증 체계 |
+| 심층강화학습 | DRL | Deep Reinforcement Learning. sCO₂ 압축기 서지 방지 제어에 적용된 AI 알고리즘 |
+| 전과정평가 | LCA | Life Cycle Assessment. 제품의 생산~폐기까지 전 과정의 환경 영향 평가 |
+| 탄소중립 | Net-Zero | 온실가스 배출량과 흡수량이 동일하여 순 배출이 0인 상태 |
+| 기후관련 재무정보 공개 | TCFD | Task Force on Climate-related Financial Disclosures. 기후 리스크 재무 공시 프레임워크 |
+| 에너지 절약 공유 | ESC | Energy Saving Contract. 절감액의 일부를 솔루션 공급자가 공유하는 계약 모델 |
+| 운영비용 | OPEX | Operating Expenditure. 유지보수·구독 등 반복 발생 비용 |
+| 자본비용 | CAPEX | Capital Expenditure. 시스템 구매·설치 등 일회성 투자 비용 |
+| 가중평균자본비용 | WACC | Weighted Average Cost of Capital. DCF 할인율로 사용. B★ 기준 12% |
+| 내부수익률 | IRR | Internal Rate of Return. B★ Series A 기준 42.4% (투자자 5년) |
+| 순현재가치 | NPV | Net Present Value. B★ WACC 12% 기준 $81.7M |
+| 한국가스안전공사 | KGS | Korea Gas Safety Corporation. CO₂ 냉매 장비 KGS AC117 인증 발급 기관 |
+| 에너지기술평가원 | KEIT | Korea Evaluation Institute of Industrial Technology. 정부 R&D 과제 관리 기관 |
 
 ---
 
-## C-2. 약어표 (Abbreviations)
+## C-2. 약어 목록 (Abbreviations)
 
-| 약어 | 풀어쓰기 | 관련 챕터 |
-|---|---|---|
-| B★ | B-Star (회사명) | 전체 |
-| eCO₂ | Electrified CO₂ | Ch.1, Ch.3 |
-| sCO₂ | Supercritical CO₂ | Ch.1, Ch.2 |
-| ORC | Organic Rankine Cycle | Ch.1, Ch.2 |
-| PCHE | Printed Circuit Heat Exchanger | Ch.3, Ch.4 |
-| VFD | Variable Frequency Drive | Ch.4, Ch.5 |
-| COP | Coefficient of Performance | Ch.3, Ch.5 |
-| TRL | Technology Readiness Level | Ch.1, Ch.2 |
-| ESD | Emergency Shutdown | Ch.5, Ch.6 |
-| SIL | Safety Integrity Level | Ch.6 |
-| FMEA | Failure Mode & Effects Analysis | Ch.4, Ch.6 |
-| KGS | 한국가스안전공사 | Ch.6 |
-| ATEX | ATmosphères EXplosibles (EU 방폭 지침) | Ch.6 |
-| DR | Demand Response | Ch.5 |
-| AMI | Advanced Metering Infrastructure | Ch.5 |
-| K-ETS | Korea Emissions Trading Scheme | Ch.5, Ch.8 |
-| WACC | Weighted Average Cost of Capital | Ch.8 |
-| NPV | Net Present Value | Ch.8 |
-| IRR | Internal Rate of Return | Ch.8 |
-| PBP | Payback Period | Ch.8 |
-| CAPEX | Capital Expenditure | Ch.7, Ch.8 |
-| BOM | Bill of Materials | Ch.7 |
-| GTM | Go-To-Market | Ch.7 |
-| PCT | Patent Cooperation Treaty | Ch.9 |
-| IP | Intellectual Property | Ch.9 |
-| TAM | Total Addressable Market | Ch.1, Ch.2 |
-| CAGR | Compound Annual Growth Rate | Ch.1, Ch.2 |
-| MPC | Model Predictive Control | Ch.5 |
-| PdM | Predictive Maintenance | Ch.5 |
-| RUL | Remaining Useful Life | Ch.5 |
-| CDU | Coolant Distribution Unit | Ch.1, Ch.3 |
-| WHR | Waste Heat Recovery | Ch.1 |
-| SMR | Small Modular Reactor | Ch.1, Ch.2 |
-| LOI | Letter of Intent | Ch.7 |
-| EPC | Engineering, Procurement & Construction | Ch.7 |
-| SCADA | Supervisory Control & Data Acquisition | Ch.5 |
-| DCF | Discounted Cash Flow | Ch.8 |
-| ESG | Environmental, Social, Governance | Ch.5, Ch.8 |
-| AI | Artificial Intelligence | Ch.5, Ch.9 |
-| LSTM | Long Short-Term Memory (AI 모델) | Ch.5 |
-| DMZ | Demilitarized Zone | Ch.5 |
-| IEC | International Electrotechnical Commission | Ch.5, Ch.6 |
-| KS | 한국산업표준 | Ch.6 |
+| 약어 | 원문 |
+|---|---|
+| AI | Artificial Intelligence |
+| ATS | Automatic Transfer Switch |
+| BOM | Bill of Materials |
+| CAGR | Compound Annual Growth Rate |
+| CRM | Customer Relationship Management |
+| DC | Data Center |
+| DCF | Discounted Cash Flow |
+| D&O | Directors and Officers (Insurance) |
+| ESG | Environmental, Social, Governance |
+| EV | Enterprise Value |
+| FAB | Fabrication Plant (반도체 제조 공장) |
+| FTE | Full-Time Equivalent |
+| GHG | Greenhouse Gas |
+| GRI | Global Reporting Initiative |
+| IoT | Internet of Things |
+| IP | Intellectual Property |
+| IPO | Initial Public Offering |
+| IR | Investor Relations |
+| ISO | International Organization for Standardization |
+| KPI | Key Performance Indicator |
+| LOI | Letter of Intent |
+| LTV | Lifetime Value |
+| M&A | Mergers & Acquisitions |
+| MOU | Memorandum of Understanding |
+| MTTR | Mean Time To Repair |
+| PCT | Patent Cooperation Treaty |
+| PL | Product Liability (보험) |
+| PoC | Proof of Concept |
+| R&D | Research and Development |
+| RPM | Revolutions Per Minute |
+| RPN | Risk Priority Number |
+| SCADA | Supervisory Control and Data Acquisition |
+| SLA | Service Level Agreement |
+| SSOT | Single Source of Truth |
+| VPN | Virtual Private Network |
 
 ---
 
 ## C-3. 참고문헌 (References)
 
-### C-3-1. 학술 논문
+### 기술 문헌
 
-| # | 저자 | 제목 | 출판 | 연도 |
-|---|---|---|---|---|
-| [1] | Kim, J. et al. | "Thermodynamic analysis of transcritical CO₂ power cycle for low-grade waste heat recovery" | Applied Energy | 2023 |
-| [2] | Chen, L. et al. | "Performance optimization of printed circuit heat exchanger for sCO₂ Brayton cycle" | Energy Conversion & Management | 2024 |
-| [3] | Park, S. et al. | "AI-based adaptive control for variable-speed CO₂ compressor in data center cooling" | International Journal of Refrigeration | 2024 |
-| [4] | Lee, H. et al. | "Economic feasibility of waste heat recovery from hyperscale data centers using CO₂ power cycles" | Energy Policy | 2025 |
-| [5] | Dostal, V. | "A Supercritical Carbon Dioxide Cycle for Next Generation Nuclear Reactors" | MIT PhD Thesis | 2004 |
-| [6] | Monje, B. et al. | "Designing centrifugal compressors for supercritical CO₂" | ASME Turbo Expo | 2022 |
-| [7] | Kim, Y. et al. | "Digital twin framework for predictive maintenance of CO₂ heat pump systems" | Reliability Engineering & System Safety | 2025 |
+1. Dostal, V. (2004). *A Supercritical Carbon Dioxide Cycle for Next Generation Nuclear Reactors*. MIT.
+2. Chai, L. & Tassou, S.A. (2020). A review of printed circuit heat exchangers for helium and supercritical CO₂ Brayton cycles. *Thermal Science and Engineering Progress*, 18, 100543.
+3. ASHRAE (2021). *Handbook — Fundamentals*. ASHRAE.
+4. IEA (2023). *Data Centres and Data Transmission Networks*. IEA Energy Report.
+5. NIST (2022). *Thermophysical Properties of Fluid Systems: CO₂*. NIST WebBook.
 
-### C-3-2. 규격·기준
+### 시장·산업 보고서
 
-| # | 규격 번호 | 제목 | 발행 기관 |
-|---|---|---|---|
-| [8] | KGS AC117 | 이산화탄소를 냉매로 사용하는 냉동·냉방 설비 제조의 시설·기술·검사 기준 | 한국가스안전공사 |
-| [9] | IEC 61511 | Functional Safety: Safety Instrumented Systems for the Process Industry | IEC |
-| [10] | IEC 62443 | Industrial Automation and Control Systems Security | IEC |
-| [11] | ATEX Directive 2014/34/EU | Equipment and Protective Systems in Potentially Explosive Atmospheres | EU |
-| [12] | ASHRAE 15-2022 | Safety Standard for Refrigeration Systems | ASHRAE |
-| [13] | KS B 6275 | 열교환기 성능 시험 방법 | 국가기술표준원 |
-| [14] | ISO 13709 | Centrifugal Pumps for Petroleum, Petrochemical and Natural Gas Industries | ISO |
+6. MarketsandMarkets (2024). *Data Center Cooling Market — Global Forecast to 2030*. Report DC-2024-001.
+7. Gartner (2024). *Top Strategic Technology Trends: AI Infrastructure*.
+8. BloombergNEF (2023). *Energy Transition Investment Trends 2023*.
+9. IDC (2024). *Worldwide Data Center and Cloud Report 2024*.
 
-### C-3-3. 시장·산업 보고서
+### 규제·표준
 
-| # | 기관 | 제목 | 연도 |
-|---|---|---|---|
-| [15] | IEA | "Data Centres and Data Transmission Networks" | 2025 |
-| [16] | McKinsey & Company | "The Coming AI Infrastructure Supercycle" | 2025 |
-| [17] | BloombergNEF | "New Energy Outlook 2025: Power Sector Transformation" | 2025 |
-| [18] | KEPCO Research Institute | "한국 전력 수요 전망 2026~2035" | 2025 |
-| [19] | Korea Atomic Energy Research Institute | "SMR 상용화 로드맵 2030" | 2025 |
-| [20] | Grand View Research | "CO₂ Heat Pump Market Size & Forecast 2024~2030" | 2024 |
-| [21] | 산업통상자원부 | "2030 에너지 효율 혁신 전략" | 2024 |
-| [22] | 환경부 | "제4차 배출권거래제 기본계획 (2026~2030)" | 2025 |
+10. 한국가스안전공사 (2023). *KGS AC117: 냉매설비 제조의 시설·기술·검사 기준*.
+11. ISO 50001:2018. *Energy Management Systems — Requirements with Guidance for Use*.
+12. GRI Standards (2021). *GRI Universal Standards 2021*.
+13. TCFD (2017). *Recommendations of the Task Force on Climate-related Financial Disclosures*.
+14. IPCC (2021). *AR6 Climate Change 2021: The Physical Science Basis*.
 
-### C-3-4. 내부 검증 자료
+### 투자·재무
 
-| # | 문서 ID | 내용 | 날짜 |
-|---|---|---|---|
-| [Ev.195] | B★-TEST-2025-195 | P1(82.7kW) 실물 테스트 결과 보고서 — 대만 파트너사 시설 | 2025-11 |
-| [Ev.196] | B★-TEST-2025-196 | PCHE 핀치포인트 ΔT≤5°C 열성능 검증 | 2025-11 |
-| [Ev.197] | B★-TEST-2025-197 | VFD 부분부하(50%) COP 6.2 실측 데이터 | 2025-12 |
-| [Ev.198] | B★-CTRL-2026-001 | AI 적응 제어 안정화 시간 3.5s 실험실 검증 | 2026-01 |
-| [Ev.199] | B★-SAFE-2026-010 | ESD SIL-2 응답시간 <100ms 시험 성적서 | 2026-02 |
+15. Damodaran, A. (2023). *Equity Risk Premiums: Determinants, Estimation and Implications*. NYU Stern.
+16. KPMG (2024). *Venture Pulse Q4 2023: Global Analysis of Venture Funding*.
 
 ---
 
-## C-4. 단위 환산표
-
-| 물리량 | SI 단위 | 변환 | 비고 |
-|---|---|---|---|
-| 압력 | bar | 1 bar = 100 kPa = 0.987 atm | 설계 기준: bar |
-| 온도 | °C | K = °C + 273.15 | — |
-| 질량유량 | kg/s | 1 kg/s = 3,600 kg/h | — |
-| 열량 | kW | 1 kW = 3,412 BTU/h | — |
-| 에너지 | kWh | 1 kWh = 3.6 MJ | — |
-| 탄소 배출 | tCO₂ | 1 tCO₂ = 1,000 kgCO₂ | K-ETS 거래 단위 |
-| 환율 (기준) | ₩/$ | 1 USD = ₩1,350 | 2026-03 기준 |
-| 환율 (기준) | ₩/€ | 1 EUR = ₩1,480 | 2026-03 기준 |
-
----
-
-*본 부록은 Ch.1~9 본문 및 Ev.195~199 실물 검증 자료를 기반으로 작성되었습니다.*
-*최종 검토: GilbertKwak | 2026-03-19*
+> ⚠️ **다음 검토 일정**: 2026-07-22 | 관리자: Gilbert
